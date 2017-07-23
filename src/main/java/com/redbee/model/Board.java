@@ -1,12 +1,13 @@
 package com.redbee.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Board {
@@ -15,7 +16,8 @@ public class Board {
 	private Long id;
 	private String name;
 	@OneToMany(mappedBy = "board")
-	private Set<Location> locations = new HashSet<>();
+	@JsonIgnore
+	private List<Location> locations;
 	
 	public Board() {}
 	
@@ -32,7 +34,7 @@ public class Board {
 		return name;
 	}
 
-	public Set<Location> getLocations() {
+	public List<Location> getLocations() {
 		return locations;
 	}
 }

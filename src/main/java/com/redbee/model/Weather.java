@@ -1,21 +1,29 @@
 package com.redbee.model;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@JsonAutoDetect
 public class Weather {
 	@Id
 	private Long woeid;
-	private Date date;
+	private String date;
 	private Integer temp;
 	private String text;
+	@OneToMany(mappedBy = "weather")
+	@JsonIgnore
+	private List<Location> locations;
 	
 	public Weather() {}
 	
-	public Weather(Long woeid, Date date, Integer temp, String text) {
+	public Weather(Long woeid, String date, Integer temp, String text) {
 		this.woeid = woeid;
 		this.date = date;
 		this.temp = temp;
@@ -30,11 +38,11 @@ public class Weather {
 		this.woeid = woeid;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
