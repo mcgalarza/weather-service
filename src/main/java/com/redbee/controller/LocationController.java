@@ -30,18 +30,20 @@ public class LocationController {
 	@Autowired
 	private WeatherRepository weatherRepository;
 	
-	@RequestMapping(value = "locations", method = RequestMethod.GET)
+	private RestTemplate restTemplate = new RestTemplate();
+	
+//	@RequestMapping(value = "locations", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Location> list(@PathVariable String board) throws BoardNotFoundException {
 		this.validateBoard(board);
 		return locationRepository.findByBoardName(board);
 	}
 	
-	@RequestMapping(value = "locations", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public Location create(@PathVariable String board, @RequestBody Location location) throws BoardNotFoundException, UnsupportedEncodingException, JSONException {
 		this.validateBoard(board);
 		location.setBoard(boardRepository.findByName(board));
 		String woeidQuery = "https://query.yahooapis.com/v1/public/yql?q=select woeid from geo.places(1) where text='" + location.getName() + "'&format=json";
-		RestTemplate restTemplate = new RestTemplate();
         String woeidStr = restTemplate.getForObject(woeidQuery, String.class);
         JSONObject woeidJson = new JSONObject(woeidStr);
         Long woeid = woeidJson.getJSONObject("query").getJSONObject("results").getJSONObject("place").getLong("woeid");
@@ -62,7 +64,7 @@ public class LocationController {
 		return locationRepository.saveAndFlush(location);
 	}
 	
-	@RequestMapping(value = "locations/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public Location delete(@PathVariable String board, @PathVariable Long id) throws BoardNotFoundException {
 		this.validateBoard(board);
 		Location existingLocation = locationRepository.findOne(id);

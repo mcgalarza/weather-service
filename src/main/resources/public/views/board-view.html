@@ -1,0 +1,21 @@
+<div class="container pad-top">
+  <table class="table boardtable">
+      <tr>
+          <td><h3>Details for {{location.board.name}}</h3></td>
+          <td></td>
+      </tr>
+      <tr ng-repeat="location in locations">
+          <td>City</td>
+          <td>{{location.name}}</td>
+          <td>Date</td>
+          <td>{{location.weather.date}}</td>
+          <td>Temperature</td>
+          <td>{{location.weather.temp}}</td>
+          <td>Description</td>
+          <td>{{location.weather.text}}</td>
+          <td>
+            <!-- <a class="btn btn-danger"  ng-click="deleteLocation({location.board.name}/{location.id})">Delete</a> -->
+            <a class="btn btn-danger"  ng-click="deleteLocation({id:location.board.name/location.id})">Delete</a>
+          </td>
+      </tr>
+  </table>

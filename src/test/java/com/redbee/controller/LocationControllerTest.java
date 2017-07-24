@@ -20,6 +20,7 @@ import com.redbee.model.Board;
 import com.redbee.model.Location;
 import com.redbee.repository.BoardRepository;
 import com.redbee.repository.LocationRepository;
+import com.redbee.repository.WeatherRepository;
 
 public class LocationControllerTest {
 	@InjectMocks
@@ -29,6 +30,8 @@ public class LocationControllerTest {
 	private LocationRepository locationRepository;
 	@Mock
 	private BoardRepository boardRepository;
+	@Mock
+	private WeatherRepository weatherRepository;
 	
 	@Before
 	public void init() {
@@ -56,7 +59,8 @@ public class LocationControllerTest {
 	@Test
 	public void testLocationCreate() throws BoardNotFoundException, UnsupportedEncodingException, JSONException {
 //		Board board1 = new Board(1l, "martin");
-//		Location location = new Location(2l, "Goya", board1);
+//		Location location = new Location(2l, "Goya");
+//		location.setBoard(board1);
 //		
 //		when(boardRepository.findByName("martin")).thenReturn(board1);
 //		when(locationRepository.saveAndFlush(location)).thenReturn(location);
@@ -70,17 +74,17 @@ public class LocationControllerTest {
 	
 	@Test
 	public void testLocationDelete() throws BoardNotFoundException {
-//		Board board1 = new Board(1l, "martin");
-//		Location location = new Location(1l, "Goya", board1.getName());
-//		
-//		when(boardRepository.findByName("martin")).thenReturn(board1);
-//		when(locationRepository.findOne(1l)).thenReturn(location);
-//		
-//		Location deletedLocation = locationController.delete("martin", 1l);
-//		
-//		verify(locationRepository).delete(location);
-//		assertThat(deletedLocation.getId(), is(1l));
-//		assertThat(deletedLocation.getName(), is("Goya"));
+		Board board1 = new Board(1l, "martin");
+		Location location = new Location(1l, "Goya");
+		
+		when(boardRepository.findByName("martin")).thenReturn(board1);
+		when(locationRepository.findOne(1l)).thenReturn(location);
+		
+		Location deletedLocation = locationController.delete("martin", 1l);
+		
+		verify(locationRepository).delete(location);
+		assertThat(deletedLocation.getId(), is(1l));
+		assertThat(deletedLocation.getName(), is("Goya"));
 	}
 	
 }
