@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Location creation</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputLocationName">Location:</label>
+            <div class="controls">
+                <input type="text" id="inputLocationName" ng-model="location.name"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="createNewLocation()" class="btn btn-small btn-primary">create new location</a>
+            </div>
+        </div>
+    </form>
+</div>

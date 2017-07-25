@@ -1,4 +1,5 @@
 <div class="container pad-top">
+  <a ui-sref="newLocation" class="btn-primary btn-lg nodecoration">Add New Location</a>
   <table class="table boardtable">
       <tr>
           <td><h3>Details for {{location.board.name}}</h3></td>
@@ -14,8 +15,8 @@
           <td>Description</td>
           <td>{{location.weather.text}}</td>
           <td>
-            <!-- <a class="btn btn-danger"  ng-click="deleteLocation({location.board.name}/{location.id})">Delete</a> -->
-            <a class="btn btn-danger"  ng-click="deleteLocation({id:location.board.name/location.id})">Delete</a>
+            <a class="btn btn-danger"  ui-sref="deleteLocation({id:location.id})">Delete</a>
           </td>
       </tr>
   </table>
+</div>

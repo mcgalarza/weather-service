@@ -1,4 +1,5 @@
-angular.module('app.controllers', []).controller('BoardListController', function($scope, $state, popupService, $window, Board) {
+angular.module('app.controllers', [])
+.controller('BoardListController', function($scope, $state, popupService, $window, Board) {
   $scope.boards = Board.query(); //fetch all boards. Issues a GET to /boards
 
   // $scope.deleteBoard = function(board) { // Delete a Board. Issues a DELETE to boards/:id
@@ -28,4 +29,13 @@ angular.module('app.controllers', []).controller('BoardListController', function
       $state.go('boards'); // on success go back to the list i.e. boards state.
     });
   };
-});
+})
+// .controller('LocationCreateController', function($scope, $state, $stateParams, LocationsFactory) {
+//   $scope.location = new LocationsFactory();  //create new board instance. Properties will be set via ng-model on UI
+
+//   $scope.addLocation = function() { //create a new board. Issues a POST to /boards
+//     $scope.location.$save(function() {
+//       $state.go('boards'); // on success go back to the list i.e. boards state.
+//     });
+//   };
+// });
