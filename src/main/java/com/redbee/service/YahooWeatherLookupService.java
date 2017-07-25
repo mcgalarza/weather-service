@@ -30,4 +30,13 @@ public class YahooWeatherLookupService {
     	return weather;
 	}
 	
+	public Long findWoeid(String city) throws JSONException {
+		String woeidQuery = "https://query.yahooapis.com/v1/public/yql?q=select woeid from geo.places(1) where text='" + city + "'&format=json";
+        String woeidStr = restTemplate.getForObject(woeidQuery, String.class);
+        JSONObject woeidJson = new JSONObject(woeidStr);
+        Long woeid = woeidJson.getJSONObject("query").getJSONObject("results").getJSONObject("place").getLong("woeid");
+        
+        return woeid;
+	}
+	
 }
