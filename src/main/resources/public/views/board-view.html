@@ -1,21 +1,19 @@
 <div class="container pad-top">
-  <a ui-sref="newLocation" class="btn-primary btn-lg nodecoration">Add New Location</a>
+  <a ui-sref="newLocation()" class="btn-primary btn-lg nodecoration">Add New Location</a>
   <table class="table boardtable">
       <tr>
-          <td><h3>Details for {{location.board.name}}</h3></td>
-          <td></td>
+          <td><h3>City</h3></td>
+          <td><h3>Date</h3></td>
+          <td><h3>Temperature (°F)</h3></td>
+          <td><h3>Description</h3></td>
       </tr>
       <tr ng-repeat="location in locations">
-          <td>City</td>
           <td>{{location.name}}</td>
-          <td>Date</td>
           <td>{{location.weather.date}}</td>
-          <td>Temperature</td>
           <td>{{location.weather.temp}}</td>
-          <td>Description</td>
           <td>{{location.weather.text}}</td>
           <td>
-            <a class="btn btn-danger"  ui-sref="deleteLocation({id:location.id})">Delete</a>
+            <a class="btn btn-danger"  ng-click="deleteLocation(location)">Delete</a>
           </td>
       </tr>
   </table>

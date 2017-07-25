@@ -58,9 +58,9 @@
 	        templateUrl: viewsPrefix + 'board-add.html',
 	        controller:'BoardCreateController'
 	    }).state('newLocation',{
-	    	url:'/boards/:id/new',
-	    	templateUrl: viewsPrefix + 'location-add.html',
-	    	controller:'LocationCreateController'
+	        url:'/boards/:id/new',
+	        templateUrl: viewsPrefix + 'location-add.html',
+	        controller:'LocationCreateController'
 	    })
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',

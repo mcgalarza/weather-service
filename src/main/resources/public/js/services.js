@@ -10,9 +10,6 @@ angular.module('app.services', []).factory('Board', function($resource) {
     }
 });
 
-// angular.module('app.services', []).factory('LocationsFactory', function($resource) {
-//   return $resource('/boards/:id', {}, {
-//     query: { method: 'GET', isArray: true },
-//     create: { method: 'POST' }
-//   });
-// });
+angular.module('app.services').factory('Location', function($resource) {
+	  return $resource('/boards/:name/:id'); // Note the full endpoint address
+});
